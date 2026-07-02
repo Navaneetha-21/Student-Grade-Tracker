@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f4f7fc;
+        }
+
+
+
+        .from-container {
+            width: 90%;
+            margin: 30px auto;
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+        }
+
+        .form {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+
+        .form p {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .form label {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form input {
+            width: 240px;
+            height: 45px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding-left: 15px;
+            font-size: 16px;
+        }
+
+        .form input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 8px rgba(37, 99, 235, .3);
+        }
+
+        .Addbtn {
+            width: 120px;
+            height: 48px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .Addbtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(79, 70, 229, .4);
+        }
+
+        table {
+            width: 95%;
+            margin: 35px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+        }
+
+        thead {
+            background: #2563eb;
+            color: white;
+        }
+
+        th {
+            padding: 18px;
+        }
+
+        td {
+            padding: 16px;
+            text-align: center;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        tbody tr:hover {
+            background: #e8f1ff;
+        }
+
+        .fa-trash-can {
+            color: #ef4444;
+            font-size: 20px;
+            transition: .3s;
+        }
+
+        .fa-trash-can:hover {
+            transform: scale(1.3);
+            color: #dc2626;
+        }
+
+        .pass {
+            background: #dcfce7;
+            color: #15803d;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .fail {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .grade {
+            background: #dbeafe;
+            color: #2563eb;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+
+        /* top of the page */
+        .top_class {
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            margin-left: 60px;
+            margin-right: 60px;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom:40px;
+        }
+
+        .top_class p {
+            width: 250px;
+
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+            transition: .3s ease;
+        }
+
+        .top_class p:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, .25);
+        }
+
+        .top_class .top1 {
+            background: linear-gradient(135deg, #2563EB, #38BDF8);
+            width: 500px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .top_class .top2 {
+            background: linear-gradient(135deg, #9333EA, #C084FC);
+            width: 500px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .top_class .top3 {
+            background: linear-gradient(135deg, #16A34A, #4ADE80);
+            width: 500px;
+            align-items: center;
+            text-align: center;
+        }
+
+        #top{
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="top"><i class="fa-solid fa-user-graduate"></i>Student GradeTracker</h1>
+        <div class="top_class">
+            <p class="top1">Total Students <br>{{ total_students }}</p>
+            <p class="top2">Class Average <br>{{ class_average }}</p>
+            <p class="top3">Pass rate <br>{{ pass_per }}</p>
+        </div>
+
+
+
+        <div class="form-container">
+            <form method="post" class="form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="Addbtn">Add</button>
+        </div>
+        </form>
+
+
+        <div class="list">
+            <div class="table">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Kannada</th>
+                            <th>English</th>
+                            <th>Hindi</th>
+                            <th>Maths</th>
+                            <th>Average</th>
+                            <th>Grade</th>
+                            <th>Status</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.Kannada_mark }}</td>
+                            <td>{{ student.English_mark }}</td>
+                            <td>{{ student.Hindi_mark }}</td>
+                            <td>{{ student.Maths_mark }}</td>
+                            <td>
+                                {{ student.average }}
+                            </td>
+                            <td>
+                                <span class="grade">{{ student.grade }}</span>
+                            </td>
+                            <td>
+
+                                {% if student.status == "pass" %}
+                                <span class="pass">{{ student.status }}</span>
+                                {% else %}
+                                <span class="fail">{{ student.status }}</span>
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                <a href="{% url 'delete' student.id %}"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="9">No students Found!</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
